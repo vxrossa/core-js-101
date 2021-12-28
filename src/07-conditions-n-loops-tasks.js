@@ -27,8 +27,18 @@
  *  21 => 'Fizz'
  *
  */
-function getFizzBuzz(/* num */) {
-  throw new Error('Not implemented');
+function getFizzBuzz(num) {
+  let str = '';
+  if (num % 3 === 0) {
+    str += 'Fizz';
+  }
+  if (num % 5 === 0) {
+    str += 'Buzz';
+  }
+  if (str.length === 0) {
+    return num;
+  }
+  return str;
 }
 
 
@@ -43,8 +53,9 @@ function getFizzBuzz(/* num */) {
  *   5  => 120
  *   10 => 3628800
  */
-function getFactorial(/* n */) {
-  throw new Error('Not implemented');
+function getFactorial(n) {
+  if (n === 1) return 1;
+  return n * getFactorial(n - 1);
 }
 
 
@@ -60,8 +71,12 @@ function getFactorial(/* n */) {
  *   5,10  =>  45 ( = 5+6+7+8+9+10 )
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
-function getSumBetweenNumbers(/* n1, n2 */) {
-  throw new Error('Not implemented');
+function getSumBetweenNumbers(n1, n2) {
+  let arr = [];
+  for (let i = n1; i <= n2; i++) {
+    arr.push(i);
+  }
+  return arr.reduce((acc, elem) => acc + elem);
 }
 
 
@@ -80,8 +95,11 @@ function getSumBetweenNumbers(/* n1, n2 */) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  if (a + b <= c) return false;
+  if (a + c <= b) return false;
+  if (b + c <= a) return false;
+  return true;
 }
 
 
@@ -225,8 +243,8 @@ function reverseString(/* str */) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  return +num.toString().split('').reverse().join('');
 }
 
 
@@ -294,8 +312,24 @@ function getDigitalRoot(/* num */) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
+function isBracketsBalanced(str) {
   throw new Error('Not implemented');
+  let left = '[{(<';
+  let right = ']})>';
+  let count = 0;
+  let arr = str.split('');
+  for (let i = 0; i < arr.length; i++) {
+    if (left.includes(arr[i])) {
+      count += 1;
+    }
+    if (right.includes(arr[i])) {
+      count -= 1;
+      if (count < 0) {
+        return false;
+      }
+    }
+  }
+  return count === 0;
 }
 
 
