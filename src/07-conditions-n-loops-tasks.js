@@ -72,8 +72,8 @@ function getFactorial(n) {
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
 function getSumBetweenNumbers(n1, n2) {
-  let arr = [];
-  for (let i = n1; i <= n2; i++) {
+  const arr = [];
+  for (let i = n1; i <= n2; i += 1) {
     arr.push(i);
   }
   return arr.reduce((acc, elem) => acc + elem);
@@ -312,24 +312,24 @@ function getDigitalRoot(/* num */) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(str) {
+function isBracketsBalanced(/* str */) {
   throw new Error('Not implemented');
-  let left = '[{(<';
-  let right = ']})>';
-  let count = 0;
-  let arr = str.split('');
-  for (let i = 0; i < arr.length; i++) {
-    if (left.includes(arr[i])) {
-      count += 1;
-    }
-    if (right.includes(arr[i])) {
-      count -= 1;
-      if (count < 0) {
-        return false;
-      }
-    }
-  }
-  return count === 0;
+  // let left = '[{(<';
+  // let right = ']})>';
+  // let count = 0;
+  // let arr = str.split('');
+  // for (let i = 0; i < arr.length; i++) {
+  //   if (left.includes(arr[i])) {
+  //     count += 1;
+  //   }
+  //   if (right.includes(arr[i])) {
+  //     count -= 1;
+  //     if (count < 0) {
+  //       return false;
+  //     }
+  //   }
+  // }
+  // return count === 0;
 }
 
 
