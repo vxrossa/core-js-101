@@ -202,10 +202,71 @@ function extractEmails(str) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  const arr = [];
+  for (let i = 0; i < height; i += 1) {
+    arr[i] = [];
+    for (let j = 0; j < width; j += 1) {
+      arr[i][j] = '─';
+      if (j > 0 && i > 0 && j !== width - 1 && i !== height - 1) {
+        arr[i][j] = ' ';
+      }
+      if (i === 0 && j === 0) {
+        arr[i][j] = '┌';
+      }
+      if ((j === 0 || j === width - 1) && i > 0 && i !== height - 1) {
+        arr[i][j] = '│';
+      }
+      if (i === height - 1 && j === 0) {
+        arr[i][j] = '└';
+      }
+      if (j === width - 1 && i === 0) {
+        arr[i][j] = '┐';
+      }
+      if (j === width - 1 && i === height - 1) {
+        arr[i][j] = '┘';
+      }
+    }
+    arr[i] = `${arr[i].join('')}\n`;
+  }
+
+  return arr.join('');
 }
 
+// function rectangleString(width, height) {
+//   let arr = [];
+//   for(let i = 0; i < height; i++) {
+//     arr[i] = [];
+//     for (let j = 0; j < width; j++) {
+//       arr[i][j] = '-';
+//     }
+//   }
+
+//   for (let i = 0; i < height; i += 1) {
+//     for (let j = 0; j < width; j += 1) {
+//       if (j > 0 && i > 0 && j !== width - 1 && i !== height - 1) {
+//         arr[i][j] = ' ';
+//       }
+//       if(i === 0 && j === 0) {
+//         arr[i][j] = '+';
+//       }
+//       if((j === 0 || j === width - 1) && i > 0 && i !== height - 1) {
+//         arr[i][j] = '|';
+//       }
+//       if(i === height -1 && j === 0) {
+//         arr[i][j] = '/';
+//       }
+//       if(j === width - 1 && i === 0) {
+//         arr[i][j] = '*';
+//       }
+//       if(j === width - 1 && i === height - 1) {
+//         arr[i][j] = '^';
+//       }
+//     }
+//   }
+
+//   return arr;
+// }
 
 /**
  * Encode specified string with ROT13 cipher
