@@ -138,10 +138,6 @@ const cssSelectorBuilder = {
   combine(/* selector1, combinator, selector2 */) {
     throw new Error('Not implemented');
   },
-
-  stringify() {
-    
-  }
 };
 
 
