@@ -471,21 +471,11 @@ function sortCitiesArray(arr) {
  */
 function getIdentityMatrix(n) {
   if (n === 1) return [[1]];
-  const arr = [];
-  for (let i = 0; i <= n; i += 1) {
-    arr.push([]);
-  }
-
-  for (let i = 0; i <= n; i += 1) {
-    for (let j = 0; j < n; j += 1) {
-      if (j === i) {
-        arr[i][j] = 1;
-      } else {
-        arr[i][j] = 0;
-      }
-    }
-  }
-  return arr;
+  const arr = Array(n).fill(null).map(() => Array(n).fill(0));
+  return arr.map((elem, index1) => elem.map((nest, index2) => {
+    if (index1 === index2) return 1;
+    return 0;
+  }));
 }
 
 /**

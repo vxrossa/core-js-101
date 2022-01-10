@@ -135,8 +135,12 @@ function isTriangle(a, b, c) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  if (rect1.top + rect1.height < rect2.top
+    || rect1.left + rect1.width < rect2.left) {
+    return false;
+  }
+  return true;
 }
 
 
@@ -182,8 +186,28 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  const arr = str.split('');
+  const set = new Set(arr);
+  const occurObj = {};
+
+  arr.forEach((element) => {
+    if (set.has(element)) {
+      if (occurObj[element] > 0) {
+        occurObj[element] += 1;
+      } else {
+        occurObj[element] = 1;
+      }
+    }
+  });
+
+  for (let i = 0; i < Object.entries(occurObj).length; i += 1) {
+    const item = Object.entries(occurObj)[i];
+    if (item[1] === 1) {
+      return item[0];
+    }
+  }
+  return null;
 }
 
 
@@ -209,8 +233,12 @@ function findFirstSingleChar(/* str */) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  const first = a < b ? a : b;
+  const second = a > b ? a : b;
+  const leftBracket = isStartIncluded ? '[' : '(';
+  const rightBracket = isEndIncluded ? ']' : ')';
+  return `${leftBracket}${first}, ${second}${rightBracket}`;
 }
 
 
@@ -226,8 +254,12 @@ function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  const arr = str.split('');
+  arr.forEach((elem) => {
+    elem.split('').reverse().join('');
+  });
+  return arr.reverse().join('');
 }
 
 
