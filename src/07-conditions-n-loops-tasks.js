@@ -300,8 +300,26 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  let nCheck = 0;
+  let nDigit = 0;
+  let bEven = false;
+  const value = ccn.toString();
+
+  for (let n = value.length - 1; n >= 0; n -= 1) {
+    const cDigit = value.charAt(n);
+    nDigit = parseInt(cDigit, 10);
+
+    if (bEven) {
+      nDigit *= 2;
+      if (nDigit > 9) nDigit -= 9;
+    }
+
+    nCheck += nDigit;
+    bEven = !bEven;
+  }
+
+  return (nCheck % 10) === 0;
 }
 
 /**
@@ -318,8 +336,16 @@ function isCreditCardNumber(/* ccn */) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  const arr = num.toString().split('').map((elem) => parseInt(elem, 10));
+  const sum = arr.reduce((acc, elem) => acc + elem, 0);
+  const arr2 = sum.toString().split('').map((elem) => parseInt(elem, 10));
+  return arr2.reduce((acc, elem) => {
+    if (acc + elem > 9) {
+      return acc + elem - 9;
+    }
+    return acc + elem;
+  }, 0);
 }
 
 
@@ -457,7 +483,27 @@ function getMatrixProduct(/* m1, m2 */) {
  *
  */
 function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+  // const calculateHorizontally = (arr, str) => {
+  //   return arr.every((elem) => elem === str);
+  // }
+
+  // const calculateVertically = (arr, str, index) => {
+  //   let count = 0;
+  //   arr.forEach((element) => {
+  //     if (element[index] === str) {
+  //       count += 1;
+  //     }
+  //   });
+  //   return count === 3;
+  // }
+
+  // let isVerticalO = false;
+  // let isVerticalX = false;
+
+  // for (let i = 0; i < position.length; i += 1) {
+  //   isVerticalO = calculateVertically(position[i], 'O', i);
+  //   isVerticalX = calculateVertically(position[i], 'X', i);
+  // }
 }
 
 
