@@ -424,8 +424,8 @@ function toNaryString(num, n) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/verbalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  throw new Error('Not implemented');
+function getCommonDirectoryPath(pathes) {
+  pathes.forEach((elem) => elem.split('/'));
 }
 
 
@@ -482,28 +482,22 @@ function getMatrixProduct(/* m1, m2 */) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  // const calculateHorizontally = (arr, str) => {
-  //   return arr.every((elem) => elem === str);
-  // }
+function evaluateTicTacToePosition(game) {
+  let result = '';
 
-  // const calculateVertically = (arr, str, index) => {
-  //   let count = 0;
-  //   arr.forEach((element) => {
-  //     if (element[index] === str) {
-  //       count += 1;
-  //     }
-  //   });
-  //   return count === 3;
-  // }
-
-  // let isVerticalO = false;
-  // let isVerticalX = false;
-
-  // for (let i = 0; i < position.length; i += 1) {
-  //   isVerticalO = calculateVertically(position[i], 'O', i);
-  //   isVerticalX = calculateVertically(position[i], 'X', i);
-  // }
+  game.forEach((element, index) => {
+    const firstCorrectResult = element[0];
+    const secondCorrectResult = game[0][0];
+    const thirdCorrectResult = game[0][2];
+    if (element[0] === element[1] && element[0] === element[2]) {
+      result = firstCorrectResult;
+    }
+    if (game[0][index] === game[1][index]
+      && game[0][index] === game[2][index]) { result = game[0][index]; }
+    if (game[0][0] === game[1][1] && game[0][0] === game[2][2]) { result = secondCorrectResult; }
+    if (game[0][2] === game[1][1] && game[2][0] === game[0][2]) { result = thirdCorrectResult; }
+  });
+  return result !== ' ' && result ? result : undefined;
 }
 
 
